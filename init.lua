@@ -265,6 +265,10 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Allow line wrap when using cursor keys
+vim.opt.whichwrap:append('<')
+vim.opt.whichwrap:append('>')
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -447,13 +451,7 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  clangd = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -537,3 +535,11 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+require('onedark').setup  {
+  -- Main options --
+  style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  transparent = false,  -- Show/hide background
+}
+require('onedark').load()
+
