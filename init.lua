@@ -157,10 +157,7 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
         theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
       },
     },
   },
@@ -208,11 +205,38 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  {
+    'mvllow/modes.nvim',
+    opts = {
+      colors = {
+        copy = "#f5c359",
+        delete = "#c75c6a",
+        insert = "#78ccc5",
+        visual = "#9745be",
+      },
 
+      -- Set opacity for cursorline and number background
+      line_opacity = 0.25,
+
+      -- Enable cursor highlights
+      set_cursor = true,
+
+      -- Enable cursorline initially, and disable cursorline for inactive windows
+      -- or ignored filetypes
+      set_cursorline = true,
+
+      -- Enable line number highlights to match cursorline
+      set_number = true,
+
+      -- Disable modes highlights in specified filetypes
+      -- Please PR commonly ignored filetypes
+      ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
+    }
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -266,8 +290,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Allow line wrap when using cursor keys
-vim.opt.whichwrap:append('<')
-vim.opt.whichwrap:append('>')
+vim.opt.whichwrap:append('<,>,h,l,[,]')
 
 -- [[ Basic Keymaps ]]
 
@@ -532,8 +555,6 @@ cmp.setup {
 
 require('onedark').setup {
   -- Main options --
-  style = 'warmer',    -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-  transparent = false, -- Show/hide background
+  style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 }
 require('onedark').load()
-
