@@ -491,6 +491,7 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
+  pylsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
