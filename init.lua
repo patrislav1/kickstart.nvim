@@ -69,7 +69,6 @@ require('lazy').setup({
 
   -- Git related plugins
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -491,7 +490,7 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
-  pylsp = {},
+  pyright = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
