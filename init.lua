@@ -254,6 +254,22 @@ require('lazy').setup({
       ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
     }
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {
+      }
+      vim.api.nvim_set_keymap('n', '<leader><CR>', ':NvimTreeToggle<CR>',
+        { noremap = true, silent = true, desc = 'Toggle nvim-tree' })
+      vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeFindFile<CR>',
+        { noremap = true, silent = true, desc = 'Find file in nvim-tree' })
+    end,
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
