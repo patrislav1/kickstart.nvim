@@ -179,6 +179,7 @@ require('lazy').setup({
     opts = {
       options = {
         theme = 'onedark',
+        disabled_filetypes = { 'NvimTree' },
       },
     },
   },
@@ -594,3 +595,17 @@ require('onedark').setup {
   style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 }
 require('onedark').load()
+
+--[[
+-- Debugging for unpredictable behavior of mappings in visual mode
+vim.keymap.set('n', '<leader>y', function()
+  print('Hello normal mode')
+  vim.cmd("set background=light")
+end)
+
+vim.keymap.set('v', '<leader>y', function()
+  print('Hello visual mode')
+  vim.cmd("set background=dark")
+end)
+]]
+   --
