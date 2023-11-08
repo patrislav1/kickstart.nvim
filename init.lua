@@ -336,6 +336,10 @@ vim.o.termguicolors = true
 -- Allow line wrap when using cursor keys
 vim.opt.whichwrap:append('<,>,h,l,[,]')
 
+-- Improve diff view
+vim.opt.diffopt = 'internal,vertical,filler,closeoff,context:10'
+vim.opt.fillchars:append('diff: ')
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
