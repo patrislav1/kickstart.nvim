@@ -310,6 +310,32 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
+vim.g.clipboard = {
+  name = 'tmux',
+  copy = {
+    ['+'] = 'tmux load-buffer -w -',
+    ['*'] = 'tmux load-buffer -w -',
+  },
+  paste = {
+    ['+'] = 'tmux save-buffer -',
+    ['*'] = 'tmux save-buffer -',
+  },
+}
+--[[
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.clipboard.osc52').copy,
+    ['*'] = require('vim.clipboard.osc52').copy,
+  },
+  paste = {
+    ['+'] = require('vim.clipboard.osc52').paste,
+    ['*'] = require('vim.clipboard.osc52').paste,
+  },
+}
+]]
+--
+
 -- Enable break indent
 vim.o.breakindent = true
 
