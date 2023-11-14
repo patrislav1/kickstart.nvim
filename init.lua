@@ -620,4 +620,7 @@ vim.keymap.set('v', '<leader>y', function()
   vim.cmd("set background=dark")
 end)
 ]]
-   --
+--
+
+-- Clear search highlighting on <cr> in normal mode
+vim.keymap.set('n', '<cr>', ':nohl<cr>', { silent = true })
