@@ -650,3 +650,7 @@ end)
 
 -- Clear search highlighting on <cr> in normal mode
 vim.keymap.set('n', '<cr>', ':nohl<cr>', { silent = true })
+
+-- Add window handling hotkeys somewhat similar to tmux
+vim.keymap.set('n', '<leader>%', ':vsplit<cr>', { noremap = true, silent = true, desc = 'Split vertically' })
+vim.keymap.set('n', '<leader>"', ':split<cr>', { noremap = true, silent = true, desc = 'Split horizontally' })
