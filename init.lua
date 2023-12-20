@@ -294,6 +294,13 @@ require('lazy').setup({
         { noremap = true, silent = true, desc = 'Find file in nvim-tree' })
     end,
   },
+  {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
+  },
   --[[
   {
     "iamcco/markdown-preview.nvim",
@@ -743,6 +750,10 @@ require('onedark').setup {
   style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 }
 require('onedark').load()
+
+require('neogen').setup({ snippet_engine = "luasnip" })
+vim.keymap.set("n", "<leader>nf", ":lua require('neogen').generate()<CR>",
+  { noremap = true, silent = true, desc = 'Generate Doxygen comment' })
 
 --[[
 -- Debugging for unpredictable behavior of mappings in visual mode
