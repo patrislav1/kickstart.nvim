@@ -643,6 +643,9 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
+  -- If clangd doesn't find system includes, add following to CMakeLists.txt:
+  -- set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+  -- set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
   pyright = {},
   lua_ls = {
     Lua = {
