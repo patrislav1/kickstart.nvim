@@ -509,7 +509,8 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
+      'bash' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -769,8 +770,13 @@ end)
 ]]
 --
 
--- Clear search highlighting on <cr> in normal mode
-vim.keymap.set('n', '<cr>', ':nohl<cr>', { silent = true })
+-- Clear search highlighting on <CR> in normal mode, but not in quickfix windows
+vim.api.nvim_exec2([[
+  augroup CustomClearHighlight
+    autocmd!
+    autocmd FileType * if &buftype != 'quickfix' | nnoremap <buffer> <CR> :nohl<CR> | endif
+  augroup END
+]], {})
 
 -- Add window handling hotkeys somewhat similar to tmux
 vim.keymap.set('n', '<leader>%', ':vsplit<cr>', { noremap = true, silent = true, desc = 'Split vertically' })
