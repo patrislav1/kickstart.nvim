@@ -781,3 +781,6 @@ vim.api.nvim_exec2([[
 -- Add window handling hotkeys somewhat similar to tmux
 vim.keymap.set('n', '<leader>%', ':vsplit<cr>', { noremap = true, silent = true, desc = 'Split vertically' })
 vim.keymap.set('n', '<leader>"', ':split<cr>', { noremap = true, silent = true, desc = 'Split horizontally' })
+
+-- Set LSP log level to debug LSP/formatting issues. The log will be at ~/.local/state/nvim/lsp.log
+-- vim.lsp.set_log_level("trace")
