@@ -547,7 +547,7 @@ vim.defer_fn(function()
       'gitattributes',
       'gitcommit',
       'gitignore',
-      'groovy',
+      --  'groovy',
       'html',
       'ini',
       'javascript',
