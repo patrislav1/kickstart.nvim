@@ -562,6 +562,7 @@ vim.defer_fn(function()
       'objdump',
       'proto',
       'python',
+      'query',
       'rust',
       'rst',
       'scss',
