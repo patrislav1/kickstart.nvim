@@ -846,11 +846,11 @@ end)
 ]]
 --
 
--- Clear search highlighting on <CR> in normal mode, but not in quickfix windows
+-- Clear search highlighting on <CR> in normal mode, but not in quickfix or nowrite windows
 vim.api.nvim_exec2([[
   augroup CustomClearHighlight
     autocmd!
-    autocmd FileType * if &buftype != 'quickfix' | nnoremap <buffer> <CR> :nohl<CR> | endif
+    autocmd FileType * if &buftype != 'quickfix' && &modifiable | nnoremap <buffer> <CR> :nohl<CR> | endif
   augroup END
 ]], {})
 
