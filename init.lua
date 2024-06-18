@@ -529,7 +529,7 @@ vim.defer_fn(function()
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
       'bash',
-      'bitbake',
+      -- 'bitbake',
       'c',
       'cpp',
       'cmake',
@@ -552,7 +552,7 @@ vim.defer_fn(function()
       'javascript',
       'jq',
       'json',
-      'latex',
+      -- 'latex',
       'linkerscript',
       'lua',
       'make',
@@ -561,7 +561,7 @@ vim.defer_fn(function()
       'ninja',
       'objdump',
       'proto',
-      'python',
+      --      'python',
       'query',
       'rust',
       'rst',
