@@ -305,6 +305,7 @@ require('lazy').setup({
     },
     config = function()
       require("nvim-tree").setup {
+        view = { adaptive_size = true },
       }
       vim.api.nvim_set_keymap('n', '<leader><CR>', ':NvimTreeToggle<CR>',
         { noremap = true, silent = true, desc = 'Toggle nvim-tree' })
