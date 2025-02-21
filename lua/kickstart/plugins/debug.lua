@@ -13,13 +13,14 @@ return {
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
+    'nvim-neotest/nvim-nio',
 
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    -- 'leoluz/nvim-dap-go',
   },
   config = function()
     local dap = require 'dap'
@@ -52,6 +53,36 @@ return {
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
 
+    dap.adapters.cppdbg = {
+      id = 'cppdbg',
+      type = 'executable',
+      command = '/opt/vscode-cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = "Launch file",
+        type = "cppdbg",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtEntry = true,
+      },
+      {
+        name = 'Attach to gdbserver :1234',
+        type = 'cppdbg',
+        request = 'launch',
+        MIMode = 'gdb',
+        miDebuggerServerAddress = 'localhost:1234',
+        miDebuggerPath = '/usr/bin/gdb',
+        cwd = '${workspaceFolder}',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+      },
+    }
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
@@ -82,6 +113,6 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup()
+    -- require('dap-go').setup()
   end,
 }
