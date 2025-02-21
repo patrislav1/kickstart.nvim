@@ -946,7 +946,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
@@ -999,6 +999,14 @@ vim.api.nvim_exec2(
 -- Add window handling hotkeys somewhat similar to tmux
 vim.keymap.set('n', '<leader>%', ':vsplit<cr>', { noremap = true, silent = true, desc = 'Split vertically' })
 vim.keymap.set('n', '<leader>"', ':split<cr>', { noremap = true, silent = true, desc = 'Split horizontally' })
+
+-- LSP autoformat
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
+})
 
 -- Set LSP log level to debug LSP/formatting issues. The log will be at ~/.local/state/nvim/lsp.log
 -- vim.lsp.set_log_level("trace")
