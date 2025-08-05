@@ -52,6 +52,26 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Bitbake server "kind of" works, but not all features, disable it for now
+-- see also https://github.com/yoctoproject/vscode-bitbake/issues/380
+-- maybe bitbake/getRecipeLocalFiles has to be implemented on nvim side
+-- also it needs to run bitbake for some features ... maybe it's overkill?
+--
+-- sudo npm install -g language-server-bitbake
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'bitbake',
+--   callback = function(args)
+--     vim.lsp.start {
+--       name = 'bitbake',
+--       cmd = { 'language-server-bitbake', '--stdio' },
+--       root_dir = function(fname)
+--         return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+--       end,
+--       single_file_support = false,
+--     }
+--   end,
+-- })
+
 -- Set LSP log level to debug LSP/formatting issues. The log will be at ~/.local/state/nvim/lsp.log
 -- vim.lsp.set_log_level("trace")
 
@@ -82,8 +102,10 @@ return {
       require('nvim-tree').setup {
         view = { adaptive_size = true },
       }
-      vim.api.nvim_set_keymap('n', '<leader><CR>', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle nvim-tree' })
-      vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'Find file in nvim-tree' })
+      vim.api.nvim_set_keymap('n', '<leader><CR>', ':NvimTreeToggle<CR>',
+        { noremap = true, silent = true, desc = 'Toggle nvim-tree' })
+      vim.api.nvim_set_keymap('n', '<leader><TAB>', ':NvimTreeFindFile<CR>',
+        { noremap = true, silent = true, desc = 'Find file in nvim-tree' })
     end,
   },
   {
